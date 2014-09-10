@@ -18,9 +18,10 @@ namespace MultithreadApprenticeForm
       InitializeComponent();
     }
 
-    private void button1_Click(object sender, EventArgs e)
+    private void buttonThread_Click(object sender, EventArgs e)
     {
-      Thread t = new Thread(new ParameterizedThreadStart(Program.UseApprentice));
+      Thread t = new Thread(new ParameterizedThreadStart(
+        Program.UseApprentice));
 
       // Make sure to set the apartment state BEFORE starting the thread
       // Some info about STA:
@@ -29,7 +30,7 @@ namespace MultithreadApprenticeForm
       t.Start(this); 
     }
 
-    private void button2_Click(object sender, EventArgs e)
+    private void buttonNoThread_Click(object sender, EventArgs e)
     {
       Program.UseApprentice(this);
     }

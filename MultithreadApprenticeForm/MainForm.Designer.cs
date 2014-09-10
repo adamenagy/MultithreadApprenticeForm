@@ -42,7 +42,7 @@
       this.buttonThread.TabIndex = 0;
       this.buttonThread.Text = "Use thread";
       this.buttonThread.UseVisualStyleBackColor = true;
-      this.buttonThread.Click += new System.EventHandler(this.button1_Click);
+      this.buttonThread.Click += new System.EventHandler(this.buttonThread_Click);
       // 
       // pictureBox
       // 
@@ -61,7 +61,7 @@
       this.buttonNoThread.TabIndex = 2;
       this.buttonNoThread.Text = "Don\'t use thread";
       this.buttonNoThread.UseVisualStyleBackColor = true;
-      this.buttonNoThread.Click += new System.EventHandler(this.button2_Click);
+      this.buttonNoThread.Click += new System.EventHandler(this.buttonNoThread_Click);
       // 
       // MainForm
       // 
