@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace MultithreadApprenticeForm
 {
@@ -36,6 +37,20 @@ namespace MultithreadApprenticeForm
       }
     }
 
+    delegate void UpdateInfoDelegate(Label lbl, string info);
+    public static void UpdateInfo(Label lbl, string info)
+    {
+      if (lbl.InvokeRequired)
+      {
+        lbl.Invoke(new UpdateInfoDelegate(UpdateInfo),
+          new object[] { lbl, info }); 
+      }
+      else
+      {
+        lbl.Text = info;
+      }
+    }
+
     public static void UseApprentice(object obj)
     {
       MainForm form1 = (MainForm)obj;
@@ -43,10 +58,18 @@ namespace MultithreadApprenticeForm
       Inventor.ApprenticeServerComponent app =
         new Inventor.ApprenticeServerComponent();
 
-      for (int i = 0; i < 10; i++)
+      string folder = @"C:\Users\adamnagy\Documents\Inventor";
+
+      UpdateInfo(form1.lblInfo, "Working...");
+
+      string [] files = Directory.GetFiles(folder, "*.ipt");
+      int i = 0;
+      foreach (string file in files)
       {
         Inventor.ApprenticeServerDocument doc =
-          app.Open(@"C:\Users\adamnagy\Documents\Inventor\boxes.iam");
+          app.Open(file);
+
+        UpdateInfo(form1.lblInfo, "Working..." + (++i).ToString());
 
         try
         {
@@ -56,17 +79,21 @@ namespace MultithreadApprenticeForm
           Image img = AxHostConverter.PictureDispToImage(pic);
 
           form1.pictureBox.Image = null;
-          System.Threading.Thread.Sleep(500); 
+          //System.Threading.Thread.Sleep(100); 
           form1.pictureBox.Image = img;
-          System.Threading.Thread.Sleep(500); 
+          //System.Threading.Thread.Sleep(100); 
         }
         catch
         {
-          System.Diagnostics.Debug.WriteLine("Oops"); 
+          System.Diagnostics.Debug.WriteLine("Oops");
+          UpdateInfo(form1.lblInfo, "Oops...");
+          return;
         }
 
         doc.Close();
       }
+
+      UpdateInfo(form1.lblInfo, "Done");
     }
   }
 }

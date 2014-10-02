@@ -31,6 +31,8 @@
       this.buttonThread = new System.Windows.Forms.Button();
       this.pictureBox = new System.Windows.Forms.PictureBox();
       this.buttonNoThread = new System.Windows.Forms.Button();
+      this.btnCopy = new System.Windows.Forms.Button();
+      this.lblInfo = new System.Windows.Forms.Label();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
       this.SuspendLayout();
       // 
@@ -63,11 +65,32 @@
       this.buttonNoThread.UseVisualStyleBackColor = true;
       this.buttonNoThread.Click += new System.EventHandler(this.buttonNoThread_Click);
       // 
+      // btnCopy
+      // 
+      this.btnCopy.Location = new System.Drawing.Point(12, 97);
+      this.btnCopy.Name = "btnCopy";
+      this.btnCopy.Size = new System.Drawing.Size(98, 23);
+      this.btnCopy.TabIndex = 3;
+      this.btnCopy.Text = "Copy 100x";
+      this.btnCopy.UseVisualStyleBackColor = true;
+      this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
+      // 
+      // lblInfo
+      // 
+      this.lblInfo.AutoSize = true;
+      this.lblInfo.Location = new System.Drawing.Point(12, 74);
+      this.lblInfo.Name = "lblInfo";
+      this.lblInfo.Size = new System.Drawing.Size(44, 13);
+      this.lblInfo.TabIndex = 4;
+      this.lblInfo.Text = "Nothing";
+      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(248, 132);
+      this.Controls.Add(this.lblInfo);
+      this.Controls.Add(this.btnCopy);
       this.Controls.Add(this.buttonNoThread);
       this.Controls.Add(this.pictureBox);
       this.Controls.Add(this.buttonThread);
@@ -76,6 +99,7 @@
       this.Text = "Thumbnail";
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
       this.ResumeLayout(false);
+      this.PerformLayout();
 
     }
 
@@ -84,6 +108,8 @@
     private System.Windows.Forms.Button buttonThread;
     public System.Windows.Forms.PictureBox pictureBox;
     private System.Windows.Forms.Button buttonNoThread;
+    private System.Windows.Forms.Button btnCopy;
+    public System.Windows.Forms.Label lblInfo;
   }
 }
 
